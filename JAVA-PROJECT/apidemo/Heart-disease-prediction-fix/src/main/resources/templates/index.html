@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>System By Andie</title>
+
+    <link href="/assets/css/pace.min.css" rel="stylesheet"/>
+    <script src="/assets/js/pace.min.js"></script>
+    <!--favicon-->
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <!-- simplebar CSS-->
+    <link href="/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
+    <!-- Bootstrap core CSS-->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- animate CSS-->
+    <link href="/assets/css/animate.css" rel="stylesheet" type="text/css"/>
+    <!-- Icons CSS-->
+    <link href="/assets/css/icons.css" rel="stylesheet" type="text/css"/>
+    <!-- Sidebar CSS-->
+    <link href="/assets/css/sidebar-menu.css" rel="stylesheet"/>
+    <!-- Custom Style-->
+    <link href="/assets/css/app-style.css" rel="stylesheet"/>
+
+
+</head>
+
+<body class="bg-theme bg-theme1">
+
+<!-- Start wrapper-->
+<div id="wrapper">
+
+    <!--Start sidebar-wrapper-->
+    <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+        <div class="brand-logo">
+            <a href="#">
+                <img src="/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+                <h5 class="logo-text">Prediction System</h5>
+            </a>
+        </div>
+        <ul class="sidebar-menu do-nicescrol">
+            <li class="sidebar-header">MAIN NAVIGATION</li>
+            <li>
+                <a th:href="@{/api/v1/index}">
+                    <i class="zmdi zmdi-view-dashboard"></i> <span>Documentation</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/api/v1/forms}">
+                    <i class="zmdi zmdi-format-list-bulleted"></i> <span>Forms</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/api/v1/patients}">
+                    <i class="zmdi zmdi-grid"></i> <span>Tables</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="zmdi zmdi-face"></i> <span>Profile</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="login.html" target="_blank">
+                    <i class="zmdi zmdi-lock"></i> <span>Login</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="register.html" target="_blank">
+                    <i class="zmdi zmdi-account-circle"></i> <span>Registration</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/api/v1/logout}" sec:authorize="isAuthenticated()">
+                    <i class="zmdi zmdi-account-circle"></i>
+                    <span class="logout-button">Logout</span>
+                </a>
+            </li>
+        </ul>
+
+
+    </div>
+    <!--End sidebar-wrapper-->
+
+    <!--Start topbar header-->
+    <header class="topbar-nav">
+        <nav class="navbar navbar-expand fixed-top">
+            <ul class="navbar-nav mr-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link toggle-menu" href="javascript:void();">
+                        <i class="icon-menu menu-icon"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <form class="search-bar">
+                        <input type="text" class="form-control" placeholder="Enter keywords">
+                        <a href="javascript:void();"><i class="icon-magnifier"></i></a>
+                    </form>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav align-items-center right-nav-link">
+                <li class="nav-item dropdown-lg">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+                        <i class="fa fa-envelope-open-o"></i></a>
+                </li>
+                <li class="nav-item dropdown-lg">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();">
+                        <i class="fa fa-bell-o"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+            <span class="user-profile">
+                <img src="/assets/images/p.avif" class="img-circle" alt="user avatar">
+            </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-item user-details">
+                                <div class="media">
+                                    <div class="avatar">
+                                        <img class="align-self-start mr-3" src="/assets/images/p.avif" alt="user avatar">
+                                    </div>
+                                    <div class="media-body">
+                                        <!-- Pastikan elemen-elemen berikut menggunakan Thymeleaf -->
+                                        <h6 class="mt-2 user-title" th:text="${fullName}">Default Name</h6>
+                                        <p class="user-subtitle" th:text="${email}">default@example.com</p>
+                                    </div>
+                                </div>
+                        </li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
+                        <li class="dropdown-divider"></li>
+                        <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!--End topbar header-->
+
+    <div class="clearfix"></div>
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <!--Start Dashboard Content-->
+
+            <div class="container mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title text-center">Dokumentasi Dataset Kesehatan Jantung</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5>Deskripsi Dataset</h5>
+                        <p>Dataset ini berisi data dari pasien dengan berbagai faktor risiko penyakit jantung. Informasi ini dapat membantu dalam analisis dan prediksi penyakit jantung berdasarkan pola tertentu dalam data pasien.</p>
+
+                        <h5>Cara Mengisi Form</h5>
+                        <p>Silakan ikuti petunjuk di bawah ini untuk mengisi form dengan benar:</p>
+                        <ul>
+                            <li>Pastikan untuk mengisi setiap kolom dengan informasi yang sesuai.</li>
+                            <li>Gunakan angka yang telah ditentukan untuk setiap atribut. Misalnya, untuk jenis kelamin, gunakan "0" untuk perempuan dan "1" untuk laki-laki.</li>
+                            <li>Jika ada pilihan ganda, pilih satu opsi yang paling sesuai dengan kondisi Anda.</li>
+                            <li>Setelah semua kolom diisi, pastikan untuk memeriksa kembali sebelum mengirimkan data Anda.</li>
+                        </ul>
+
+                        <h5>Atribut Dataset</h5>
+
+                        <div class="mb-3">
+                            <h6><strong>1. age</strong></h6>
+                            <p>Usia pasien dalam tahun. Usia dapat menjadi faktor risiko utama penyakit jantung karena kondisi jantung cenderung memburuk seiring bertambahnya usia. Contoh: seorang pasien berusia 45 tahun akan memiliki nilai "45" untuk atribut ini.</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>2. sex</strong></h6>
+                            <p>Jenis kelamin pasien, dengan "0" untuk perempuan dan "1" untuk laki-laki. Jenis kelamin berhubungan dengan risiko jantung yang bervariasi antara laki-laki dan perempuan. Contoh: jika pasien adalah laki-laki, nilai yang dimasukkan adalah "1".</p>
+                        </div>z
+                        <div class="mb-3">
+                            <h6><strong>3. cp</strong></h6>
+                            <p>Tipe nyeri dada yang dirasakan pasien. Tipe ini terbagi menjadi: "0" untuk typical angina, "1" untuk atypical angina, "2" untuk non-anginal pain, dan "3" untuk tanpa gejala. Nyeri dada adalah indikator penting dari kesehatan jantung pasien.</p>
+                            <ul>
+                                <li>0: Typical angina</li>
+                                <li>1: Atypical angina</li>
+                                <li>2: Non-anginal pain</li>
+                                <li>3: Asymptomatic</li>
+                            </ul>
+                            <p><strong>Contoh Input:</strong> 0</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>4. trestbps</strong></h6>
+                            <p>Tekanan darah pasien saat istirahat dalam satuan mm Hg. Tekanan darah tinggi merupakan faktor risiko jantung yang signifikan. Contoh: tekanan darah 130 mm Hg akan tercatat dengan nilai "130".</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>5. chol</strong></h6>
+                            <p>Kadar kolesterol dalam darah yang diukur dalam mg/dL. Kolesterol yang tinggi dapat menyebabkan penumpukan pada arteri, meningkatkan risiko serangan jantung. Contoh: kolesterol 220 mg/dL dicatat dengan nilai "220".</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>6. fbs</strong></h6>
+                            <p>Gula darah puasa, dengan nilai "1" jika lebih dari 120 mg/dL dan "0" jika tidak. Gula darah tinggi dapat memicu diabetes dan meningkatkan risiko penyakit jantung.</p>
+                            <p><strong>Contoh Input:</strong> 1</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>7. restecg</strong></h6>
+                            <p>Hasil EKG pasien saat istirahat, dengan "0" untuk normal, "1" untuk abnormalitas gelombang ST-T, dan "2" untuk indikasi hipertrofi ventrikel kiri. EKG membantu dokter dalam menilai kesehatan jantung.</p>
+                            <ul>
+                                <li>0: Normal</li>
+                                <li>1: ST-T wave abnormality</li>
+                                <li>2: Kemungkinan hipertrofi ventrikel kiri</li>
+                            </ul>
+                            <p><strong>Contoh Input:</strong> 0</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>8. thalach</strong></h6>
+                            <p>Denyut jantung maksimum yang dicapai pasien. Denyut jantung tinggi dapat menunjukkan seberapa kuat atau lemah jantung seseorang. Contoh: denyut jantung 150.</p>
+                            <p><strong>Contoh Input:</strong> 150</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>9. exang</strong></h6>
+                            <p>Nyeri dada atau angina yang muncul akibat aktivitas fisik, dengan "1" untuk ya dan "0" untuk tidak. Ini adalah indikator stres pada jantung selama aktivitas.</p>
+                            <p><strong>Contoh Input:</strong> 1</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>10. oldpeak</strong></h6>
+                            <p>Depresi segmen ST pada EKG selama latihan, dibandingkan saat istirahat. Ini membantu dalam menilai apakah ada penyumbatan aliran darah ke jantung.</p>
+                            <p><strong>Contoh Input:</strong> 2.5</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>11. slope</strong></h6>
+                            <p>Bentuk kemiringan segmen ST pada puncak latihan, yang menunjukkan arah kemiringan segmen ST: "0" menurun, "1" datar, dan "2" naik. Ini membantu dalam mendiagnosis jenis masalah jantung.</p>
+                            <ul>
+                                <li>0: Downsloping</li>
+                                <li>1: Flat</li>
+                                <li>2: Upsloping</li>
+                            </ul>
+                            <p><strong>Contoh Input:</strong> 1</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>12. ca</strong></h6>
+                            <p>Jumlah pembuluh darah yang terdeteksi saat fluoroskopi. Rentangnya antara 0 hingga 3, di mana semakin tinggi angkanya, semakin besar risiko adanya penyempitan pembuluh darah.</p>
+                            <p><strong>Contoh Input:</strong> 2</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>13. thal</strong></h6>
+                            <p>Menunjukkan jenis thalassemia pasien: "1" untuk fixed defect, "2" untuk kondisi normal, dan "3" untuk reversible defect. Thalassemia dapat mempengaruhi kesehatan darah dan jantung.</p>
+                            <ul>
+                                <li>1: Fixed defect</li>
+                                <li>2: Normal</li>
+                                <li>3: Reversible defect</li>
+                            </ul>
+                            <p><strong>Contoh Input:</strong> 2</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6><strong>14. num</strong></h6>
+                            <p>Hasil diagnosis penyakit jantung, dengan "0" untuk tidak ada penyakit dan "1-4" untuk tingkat keparahan penyakit yang berbeda.</p>
+                            <p><strong>Contoh Input:</strong> 1</p>
+                        </div>
+
+                        <h5>Lisensi</h5>
+                        <p>Dataset ini dilisensikan di bawah lisensi yang sesuai. Pastikan untuk mematuhi ketentuan penggunaan yang berlaku.</p>
+
+                        <h5>Kontribusi</h5>
+                        <p>Jika Anda ingin berkontribusi atau memberikan masukan terhadap dataset ini, silakan hubungi kami.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--End Dashboard Content-->
+
+            <!--start overlay-->
+            <div class="overlay toggle-menu"></div>
+            <!--end overlay-->
+
+        </div>
+        <!-- End container-fluid-->
+
+    </div><!--End content-wrapper-->
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+    <!--Start footer-->
+    <footer class="footer">
+        <div class="container">
+            <div class="text-center">
+                Copyright © 2018 Dashtreme Admin
+            </div>
+        </div>
+    </footer>
+    <!--End footer-->
+
+    <!--start color switcher-->
+    <div class="right-sidebar">
+        <div class="switcher-icon">
+            <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+        </div>
+        <div class="right-sidebar-content">
+
+            <p class="mb-0">Gaussion Texture</p>
+            <hr>
+
+            <ul class="switcher">
+                <li id="theme1"></li>
+                <li id="theme2"></li>
+                <li id="theme3"></li>
+                <li id="theme4"></li>
+                <li id="theme5"></li>
+                <li id="theme6"></li>
+            </ul>
+
+            <p class="mb-0">Gradient Background</p>
+            <hr>
+
+            <ul class="switcher">
+                <li id="theme7"></li>
+                <li id="theme8"></li>
+                <li id="theme9"></li>
+                <li id="theme10"></li>
+                <li id="theme11"></li>
+                <li id="theme12"></li>
+                <li id="theme13"></li>
+                <li id="theme14"></li>
+                <li id="theme15"></li>
+            </ul>
+
+        </div>
+    </div>
+    <!--end color switcher-->
+
+</div><!--End wrapper-->
+
+<!-- Bootstrap core JavaScript-->
+
+<script>
+    document.getElementById('predictionForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = {
+        name: document.getElementById('name').value,
+        age: parseInt(document.getElementById('age').value),
+        sex: parseInt(document.getElementById('sex').value),
+        cp: parseInt(document.getElementById('cp').value),
+        trestbps: parseInt(document.getElementById('trestbps').value),
+        chol: parseInt(document.getElementById('chol').value),
+        fbs: parseInt(document.getElementById('fbs').value),
+        restecg: parseInt(document.getElementById('restecg').value),
+        thalach: parseInt(document.getElementById('thalach').value),
+        exang: parseInt(document.getElementById('exang').value),
+        oldpeak: parseFloat(document.getElementById('oldpeak').value),
+        slope: parseInt(document.getElementById('slope').value),
+        ca: parseInt(document.getElementById('ca').value),
+        thal: parseInt(document.getElementById('thal').value)
+    };
+
+    try {
+        const response = await axios.post('http://localhost:8080/api/heart/predict', formData);
+        const { probability, risk } = response.data.data;
+        const message = response.data.message;
+
+        // Display prediction results
+        let resultHTML = `
+            <div class="alert ${risk === 'at risk' ? 'alert-danger' : 'alert-success'} mt-4">
+                <h5 class="alert-heading">Hasil Prediksi</h5>
+                <p><strong>Status Risiko:</strong> ${risk === 'at risk' ? 'Berisiko Tinggi' : 'Tidak Berisiko'}</p>
+                <p><strong>Probabilitas Berisiko:</strong> ${(probability.at_risk * 100).toFixed(2)}%</p>
+                <p><strong>Probabilitas Tidak Berisiko:</strong> ${(probability.no_risk * 100).toFixed(2)}%</p>
+                <hr>
+                <p>${message}</p>
+            </div>
+        `;
+
+        document.getElementById('result').innerHTML = resultHTML;
+    } catch (error) {
+        console.error('Gagal mengirim data:', error);
+        document.getElementById('result').innerHTML = `
+            <div class="alert alert-danger mt-4">
+                <strong>Error:</strong> Gagal mengirim data. Silakan coba lagi.
+            </div>
+        `;
+    }
+});
+
+
+</script>
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+
+<!-- simplebar js -->
+<script src="/assets/plugins/simplebar/js/simplebar.js"></script>
+<!-- sidebar-menu js -->
+<script src="/assets/js/sidebar-menu.js"></script>
+<!-- loader scripts -->
+<script src="/assets/js/jquery.loading-indicator.js"></script>
+<!-- Custom scripts -->
+<script src="/assets/js/app-script.js"></script>
+<!-- Chart js -->
+
+<script src="/assets/plugins/Chart.js/Chart.min.js"></script>
+
+<!-- Index js -->
+<script src="/assets/js/index.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+
+
+
+
+</body>
+</html>

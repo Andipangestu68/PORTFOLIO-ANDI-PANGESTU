@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>Home Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<style>
+		.navbar {
+            margin-bottom: 20px;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .user-info span {
+            margin-right: 10px;
+        }
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container">
+		<a class="navbar-brand" href="#" th:href="@{/}">Login and Registration</a>
+
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav ml-auto">
+				<li sec:authorize="isAuthenticated()" class="nav-item">
+					<a class="nav-link" th:href="@{/api/v1/logout}">Logout</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<h1>Welcome to the home page!</h1>
+	<br>
+	<div class="user-info">
+		<!-- Display username -->
+		<span class="nav-link">
+                <i class="fa fa-user me-2"></i>
+                Welcome, <span sec:authentication="principal.username"></span>
+            </span>
+	</div>
+	<br>
+	<!-- Display roles -->
+	<div class="user-info">
+            <span class="nav-link">
+                <i class="fa fa-user-tag me-2"></i>
+                Roles: <span th:each="role : ${roles}" th:text="${role.replace('ROLE_', '')}">Role</span>
+            </span>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--	<meta charset="UTF-8">-->
+<!--	<title>Registration Page</title>-->
+<!--	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
+<!--		  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--	<div class="container">-->
+<!--		<a class="navbar-brand" href="#">Login and Registration App</a>-->
+<!--	</div>-->
+<!--</nav>-->
+
+<!--<div class="container">-->
+<!--	<div class="row  justify-content-center">-->
+<!--		<div class="col-md-6 col-md-offset-3">-->
+
+<!--			<h1>Registration</h1>-->
+
+<!--			&lt;!&ndash;Successful Registration&ndash;&gt;-->
+<!--			<div th:if="${param.success}">-->
+<!--				<div class="alert alert-info">-->
+<!--					You have successfully registered!-->
+<!--				</div>-->
+<!--			</div>-->
+
+<!--			<form th:action="@{/api/v1/registration}" method="post" th:object="${user}">-->
+<!--				<div class="form-group">-->
+<!--					<label class="control-label" for="firstName">-->
+<!--						First Name-->
+<!--					</label>-->
+<!--					<input id="firstName" class="form-control" th:field="*{firstName}" required autofocus="autofocus">-->
+<!--				</div>-->
+
+<!--				<div class="form-group">-->
+<!--					<label class="control-label" for="lastName">-->
+<!--						Last Name-->
+<!--					</label>-->
+<!--					<input id="lastName" class="form-control" th:field="*{lastName}" required autofocus="autofocus">-->
+<!--				</div>-->
+
+<!--				<div class="form-group">-->
+<!--					<label class="control-label" for="email">-->
+<!--						Email-->
+<!--					</label>-->
+<!--					<input id="email" class="form-control" th:field="*{email}" required autofocus="autofocus">-->
+<!--				</div>-->
+
+<!--				<div class="form-group">-->
+<!--					<label class="control-label" for="password">-->
+<!--						Password-->
+<!--					</label>-->
+<!--					<input id="password" class="form-control" th:field="*{password}" type="password" required-->
+<!--						   autofocus="autofocus">-->
+<!--				</div>-->
+
+<!--				<div class="form-group">-->
+<!--					<button type="submit" class="btn btn-success">Register</button>-->
+<!--					<span>Already registered? <a href="/" th:href="@{/api/v1/login}">Login here</a></span>-->
+<!--				</div>-->
+<!--			</form>-->
+<!--		</div>-->
+<!--	</div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
+
+	<!-- Loader -->
+	<link th:href="@{/assets/css/pace.min.css}" rel="stylesheet"/>
+	<script th:src="@{/assets/js/pace.min.js}"></script>
+
+	<!-- Favicon -->
+	<link th:href="@{/assets/images/favicon.ico}" rel="icon" type="image/x-icon"/>
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet"/>
+
+	<!-- Animate CSS -->
+	<link th:href="@{/assets/css/animate.css}" rel="stylesheet" type="text/css"/>
+
+	<!-- Icons CSS -->
+	<link th:href="@{/assets/css/icons.css}" rel="stylesheet" type="text/css"/>
+
+	<!-- Custom Style -->
+	<link th:href="@{/assets/css/app-style.css}" rel="stylesheet"/>
+</head>
+
+<body class="bg-theme bg-theme1">
+<!-- Start loader -->
+<div id="pageloader-overlay" class="visible incoming">
+	<div class="loader-wrapper-outer">
+		<div class="loader-wrapper-inner">
+			<div class="loader"></div>
+		</div>
+	</div>
+</div>
+<!-- End loader -->
+
+<!-- Start wrapper -->
+<div id="wrapper">
+	<div class="card card-authentication1 mx-auto my-4">
+		<div class="card-body">
+			<div class="card-content p-2">
+				<div class="text-center">
+					<img th:src="@{/assets/images/logo-icon.png}" alt="logo icon">
+				</div>
+				<div class="card-title text-uppercase text-center py-3">Sign Up</div>
+				<!--Successful Registration-->
+				<div th:if="${param.success}">
+					<div class="alert alert-info">
+						You have successfully registered!
+					</div>
+				</div>
+				<!-- Form Registration -->
+				<form th:action="@{/api/v1/registration}" method="post" th:object="${user}">
+					<div class="form-group">
+						<label class="sr-only" for="firsName">Name</label>
+						<div class="position-relative has-icon-right">
+							<input type="text" id="firsName" class="form-control input-shadow" th:field="*{firstName}" placeholder="Enter Your First Name" autofocus="autofocus" required>
+							<div class="form-control-position">
+								<i class="icon-user"></i>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="lastName">Name</label>
+						<div class="position-relative has-icon-right">
+							<input type="text" id="lastName" class="form-control input-shadow" th:field="*{lastName}" placeholder="Enter Your Last Name" autofocus="autofocus" required>
+							<div class="form-control-position">
+								<i class="icon-user"></i>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="email">Email ID</label>
+						<div class="position-relative has-icon-right">
+							<input type="text" id="email" class="form-control input-shadow" th:field="*{email}" placeholder="Enter Your Email ID" autofocus="autofocus" required>
+							<div class="form-control-position">
+								<i class="icon-envelope-open"></i>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="password">Password</label>
+						<div class="position-relative has-icon-right">
+							<input type="password" id="password" class="form-control input-shadow" th:field="*{password}" placeholder="Choose Password">
+							<div class="form-control-position" style=" cursor: pointer;" onclick="togglePassword()">
+								<i id="togglePasswordIcon" class="icon-eye"></i>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+					</div>
+					<button type="submit" class="btn btn-light btn-block waves-effect waves-light">Sign Up</button>
+				</form>
+			</div>
+		</div>
+		<div class="card-footer text-center py-3">
+			<p class="text-warning mb-0">Already have an account? <a href="/" th:href="@{/api/v1/login}">Sign In here</a></p>
+		</div>
+	</div>
+
+	<!-- Back To Top Button -->
+<!--	<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>-->
+
+	<!-- Color switcher -->
+	<div class="right-sidebar">
+		<div class="switcher-icon">
+			<i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+		</div>
+		<div class="right-sidebar-content">
+			<p class="mb-0">Gaussian Texture</p>
+			<hr>
+			<ul class="switcher">
+				<li id="theme1"></li>
+				<li id="theme2"></li>
+				<li id="theme3"></li>
+				<li id="theme4"></li>
+				<li id="theme5"></li>
+				<li id="theme6"></li>
+			</ul>
+			<p class="mb-0">Gradient Background</p>
+			<hr>
+			<ul class="switcher">
+				<li id="theme7"></li>
+				<li id="theme8"></li>
+				<li id="theme9"></li>
+				<li id="theme10"></li>
+				<li id="theme11"></li>
+				<li id="theme12"></li>
+				<li id="theme13"></li>
+				<li id="theme14"></li>
+				<li id="theme15"></li>
+			</ul>
+		</div>
+	</div>
+	<!-- End color switcher -->
+</div>
+<!-- End wrapper -->
+
+<!-- JavaScript -->
+<script th:src="@{/assets/js/jquery.min.js}"></script>
+<script th:src="@{/assets/js/popper.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<!-- sidebar-menu js -->
+<script th:src="@{/assets/js/sidebar-menu.js}"></script>
+<!-- Custom scripts -->
+<script th:src="@{/assets/js/app-script.js}"></script>
+</body>
+</html>
