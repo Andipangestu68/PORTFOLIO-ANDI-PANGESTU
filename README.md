@@ -22,6 +22,3 @@ Repository ini berisi kumpulan project yang saya kerjakan sebagai bagian dari pe
 Kalau ada feedback atau ingin berdiskusi, silakan hubungi saya melalui [LinkedIn](https://www.linkedin.com/in/andipangestu/) atau [Email](andipangestu446@gmail.com).
 
 ---
-
-⚡ Pertanyaan:
-Apakah kamu ingin saya buatin versi **lebih ringkas (1–2 paragraf saja)** supaya simpel, atau versi **lebih detail dengan daftar project (sertifikat, Python, Java, dsb.)** biar recruiter/dosen bisa langsung melihat isinya?
