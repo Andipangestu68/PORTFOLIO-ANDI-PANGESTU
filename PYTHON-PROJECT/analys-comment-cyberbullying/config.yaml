@@ -1,0 +1,101 @@
+# Project Configuration - OPTIMIZED FOR 1500 SAMPLES
+project:
+  name: "Cyberbullying Detection IndoBERT"
+  version: "1.0.0"
+  description: "Deteksi dan Klasifikasi Multi-Label Cyberbullying pada Komentar TikTok"
+
+# Data Configuration
+data:
+  raw_data_path: "data/raw/Dataset-Research.csv"
+  processed_data_path: "data/processed/"
+  train_split: 0.7    # 1050 samples
+  val_split: 0.15     # 225 samples
+  test_split: 0.15    # 225 samples
+  random_seed: 42
+  
+# Model Configuration - BALANCED
+model:
+  name: "indobenchmark/indobert-base-p1"  # Base model (lebih akurat untuk 1500 samples)
+  max_length: 128  # Full length untuk capture konteks lebih baik
+  num_labels: 2
+  dropout: 0.1
+  hidden_dim: 768
+
+training:
+  batch_size: 16
+  learning_rate: 2e-5
+  num_epochs: 3
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  gradient_accumulation_steps: 2
+  max_grad_norm: 1.0
+  early_stopping_patience: 2
+
+  
+# Optimizer Configuration
+optimizer:
+  type: "AdamW"
+  betas: [0.9, 0.999]
+  eps: 1e-8
+
+# Scheduler Configuration
+scheduler:
+  type: "linear"
+  warmup_ratio: 0.1
+
+# Evaluation Configuration
+evaluation:
+  metrics:
+    - "accuracy"
+    - "precision"
+    - "recall"
+    - "f1_score"
+    - "roc_auc"
+    - "confusion_matrix"
+  threshold: 0.5
+
+# Fairness Analysis Configuration
+fairness:
+  sensitive_attributes:
+    - "comment_length"
+    - "word_count"
+  metrics:
+    - "demographic_parity"
+    - "equalized_odds"
+    - "equal_opportunity"
+  bias_mitigation: true
+
+# Paths
+paths:
+  models: "models/"
+  checkpoints: "models/checkpoints/"
+  results: "results/"
+  logs: "logs/"
+
+# Logging
+logging:
+  level: "INFO"
+  use_wandb: false
+  tensorboard: true  # Enable untuk monitoring training
+
+# Performance Optimization
+performance:
+  num_workers: 4  # Lebih banyak workers untuk dataset besar
+  pin_memory: true
+  use_amp: true  # Mixed precision untuk speed
+  prefetch_factor: 2  # Prefetch batches
+
+# Data Augmentation (Optional - uncomment jika butuh)
+# augmentation:
+#   enabled: true
+#   techniques:
+#     - "synonym_replacement"  # Ganti kata dengan sinonim
+#     - "random_deletion"      # Hapus kata random
+#     - "random_swap"          # Tukar posisi kata
+#   aug_probability: 0.1      # 10% data di-augment
+
+# Class Imbalance Handling (jika dataset imbalanced)
+class_balance:
+  use_class_weights: true  # Otomatis hitung class weights
+  oversample_minority: false  # Set true jika sangat imbalanced
+  undersample_majority: false

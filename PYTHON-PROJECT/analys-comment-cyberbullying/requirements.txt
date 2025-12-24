@@ -1,0 +1,31 @@
+# ===== BASIC =====
+numpy==1.26.4
+pandas==2.2.2
+scipy==1.13.1
+tqdm==4.66.4
+joblib==1.4.2
+
+# ===== MACHINE LEARNING =====
+scikit-learn==1.5.1
+imbalanced-learn==0.12.3
+xgboost==2.1.1
+lightgbm==4.5.0
+catboost==1.2.5
+
+# ===== DEEP LEARNING =====
+torch==2.3.1
+torchvision==0.18.1
+torchaudio==2.3.1
+accelerate==0.33.0
+
+# ===== NLP / TRANSFORMERS =====
+transformers==4.40.2
+tokenizers>=0.15,<0.20
+sentencepiece==0.2.0
+huggingface-hub==0.23.4
+safetensors==0.4.3
+
+# ===== VISUALIZATION =====
+matplotlib==3.8.4
+seaborn==0.13.2
+plotly==5.23.0
